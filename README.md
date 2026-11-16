@@ -9,9 +9,10 @@ The repository currently contains an early, static website prototype. It is a pr
 - **Current stage:** early MVP concept / static prototype
 - **Primary language:** Ukrainian
 - **Entry point:** [HUMANITY MVP page](HUMANITY_MVP_0.1/HUMANITY_mvp/index.html)
+- **Main experience:** [Interactive world story map](HUMANITY_MVP_0.1/HUMANITY_mvp/map.html)
 - **Product direction:** see [Product brief and roadmap](docs/PRODUCT_BRIEF.md)
 - **Story journey:** see [Story submission experience](docs/STORY_SUBMISSION_FLOW.md)
-- **Interactive demo:** open [local-only story form](HUMANITY_MVP_0.1/HUMANITY_mvp/story.html)
+- **Interactive demos:** [world story map](HUMANITY_MVP_0.1/HUMANITY_mvp/map.html) · [local-only story form](HUMANITY_MVP_0.1/HUMANITY_mvp/story.html)
 - **Trust and safety:** see [Community guidelines and moderation framework](docs/COMMUNITY_GUIDELINES.md)
 
 ## Run locally
@@ -22,13 +23,15 @@ No build tools or dependencies are required. Open `HUMANITY_MVP_0.1/HUMANITY_mvp
 
 - Responsive landing page
 - Introductory explanation of the project
-- Illustrative story cards (clearly marked as examples)
+- Interactive schematic world map with sample story points
+- Story preview panel, topic filters, text search, and zoom controls
+- Local-only sample reactions (not transmitted or saved)
 - Core values section
 - Accessibility basics: semantic landmarks, skip link, visible keyboard focus, and reduced-motion support
 
 ## Not implemented
 
-There is no backend, database, user account system, story submission, publishing, moderation, search, map, geolocation, analytics, or production deployment. The prototype does not collect or store visitor data.
+There is no backend, database, user account system, persistent story submission, publishing, moderation, real-world map tiles, live story search, geolocation, analytics, or production deployment. The current map, search, filters, zoom, and reactions operate only on built-in demonstration content. The prototype does not collect or store visitor data.
 
 ## Product principles
 
