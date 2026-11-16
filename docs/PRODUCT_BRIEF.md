@@ -44,15 +44,15 @@ The story cards are explicitly illustrative and must not be mistaken for real us
 - [ ] Decide the first supported languages and accessibility baseline.
 
 ### Phase B — Story experience design
-- [ ] Define story fields and optional author attribution.
-- [ ] Draft consent language and visibility choices.
+- [x] Draft story fields and optional author attribution.
+- [x] Propose consent and visibility choices for review.
 - [ ] Design story reading and author profile states without requiring accounts by default.
 - [ ] Define content categories and a lightweight discovery model.
 - [ ] Test prototypes with people from different language and cultural contexts.
 
 ### Phase C — Trust and safety design
-- [ ] Define prohibited content and community guidelines.
-- [ ] Design reporting, moderation queues, escalation, and appeal processes.
+- [x] Draft community guidelines and moderation principles.
+- [x] Outline reporting, moderation outcomes, escalation, and appeals (workflow design only).
 - [ ] Define privacy, retention, deletion, and data-access policies.
 - [ ] Threat-model abuse, spam, impersonation, doxxing, and targeted harassment.
 - [ ] Decide operational ownership and response expectations before accepting submissions.
@@ -87,7 +87,7 @@ These decisions should follow user research, privacy review, and operational pla
 
 1. Validate the landing-page message and visual direction with a few representative readers.
 2. Create a story-submission journey as a non-functional prototype, including consent and visibility choices.
-3. Draft community guidelines and a moderation decision framework before building public submission.
+3. Review the draft community guidelines and moderation framework with policy, privacy, and safety stakeholders.
 4. Record feedback and revise the product brief before choosing infrastructure.
 
 ## 8. Non-goals for the current prototype
