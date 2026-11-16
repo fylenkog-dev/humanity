@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Демонстраційна форма історії HUMANITY. Дані не надсилаються та не зберігаються.">
+  <meta name="theme-color" content="#f5f3eb">
+  <title>Поділитися історією — HUMANITY</title>
+  <style>
+    :root{--ink:#20352d;--muted:#64756d;--paper:#f5f3eb;--green:#315b49;--line:#dce2d8;--white:#fff;--soft:#e5eadf;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-size:16px;line-height:1.6}a{color:inherit}.shell{width:min(1040px,90%);margin:auto}header{height:82px;display:flex;align-items:center;justify-content:space-between}.logo{font-weight:850;letter-spacing:.18em;text-decoration:none}.back{color:var(--green);font-weight:650;text-decoration:none}.intro{padding:42px 0 28px}.eyebrow{color:var(--green);font-size:.75rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}h1{max-width:760px;margin:10px 0;font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.02;letter-spacing:-.055em}.lead{max-width:720px;color:var(--muted);font-size:1.1rem}.notice{margin:22px 0;padding:16px 18px;border:1px solid #c7d5c8;border-radius:14px;background:var(--soft)}.notice strong{display:block;margin-bottom:4px}.layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:22px;align-items:start;padding-bottom:70px}.panel{padding:clamp(20px,4vw,30px);border:1px solid var(--line);border-radius:20px;background:var(--white)}h2{margin:0 0 18px;font-size:1.35rem}.field{margin-bottom:19px}label,.legend{display:block;margin-bottom:7px;font-weight:700}.hint{display:block;margin-top:5px;color:var(--muted);font-size:.85rem}input,textarea,select{width:100%;padding:12px 13px;border:1px solid #bac8bd;border-radius:10px;background:white;color:var(--ink);font:inherit}textarea{min-height:190px;resize:vertical}input:focus-visible,textarea:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #b06a35;outline-offset:3px}.choices{display:grid;gap:10px}.choice{display:flex;align-items:flex-start;gap:10px;padding:12px;border:1px solid var(--line);border-radius:12px}.choice input{width:auto;margin-top:5px;accent-color:var(--green)}.choice label{margin:0;font-weight:500}.check{display:flex;align-items:flex-start;gap:10px;margin:15px 0}.check input{width:auto;margin-top:6px;accent-color:var(--green)}.check label{margin:0;font-weight:500}.button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:11px 20px;border:0;border-radius:999px;background:var(--green);color:white;font:inherit;font-weight:750;cursor:pointer}.button:hover{background:#244536}.preview{position:sticky;top:18px;background:#f9faf7}.preview h3{margin:8px 0;font-size:1.45rem;line-height:1.2}.preview-body{min-height:110px;white-space:pre-wrap;overflow-wrap:anywhere;color:var(--muted)}.preview-meta{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-size:.9rem}.empty{color:#87958d;font-style:italic}.status{margin-top:14px;padding:12px;border-radius:10px;background:var(--soft);color:var(--ink)}footer{padding:25px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}.small{font-size:.85rem;color:var(--muted)}@media(max-width:780px){.layout{grid-template-columns:1fr}.preview{position:static}.intro{padding-top:24px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+<header class="shell"><a class="logo" href="index.html">HUMANITY</a><a class="back" href="index.html">← На головну</a></header>
+<main class="shell">
+  <div class="intro">
+    <div class="eyebrow">Твій голос важливий</div>
+    <h1>Поділися історією.</h1>
+    <p class="lead">Це безпечний на вигляд макет майбутнього процесу. Перш ніж історії зможуть публікуватися, HUMANITY має підготувати модерацію, приватність і зрозумілу згоду.</p>
+    <div class="notice" role="note"><strong>Демонстраційний режим — нічого не надсилається.</strong>Текст залишається лише в поточній вкладці браузера. Ця сторінка не відправляє дані на сервер і не зберігає їх після перезавантаження.</div>
+  </div>
+
+  <div class="layout">
+    <form class="panel" id="story-form">
+      <h2>Твоя історія</h2>
+      <div class="field"><label for="title">Назва <span class="small">(необов’язково)</span></label><input id="title" name="title" maxlength="100" placeholder="Коротко про головне"><span class="hint">До 100 символів.</span></div>
+      <div class="field"><label for="story">Текст історії</label><textarea id="story" name="story" maxlength="5000" required placeholder="Розкажи стільки, скільки вважаєш за потрібне…"></textarea><span class="hint"><span id="count">0</span> / 5000 символів. Не додавай точних адрес, номерів телефонів чи чужих приватних даних.</span></div>
+      <div class="field"><label for="topic">Тема <span class="small">(необов’язково)</span></label><select id="topic" name="topic"><option value="">Обери тему</option><option>Доброта</option><option>Сміливість</option><option>Надія</option><option>Родина і дружба</option><option>Новий початок</option><option>Інше</option></select></div>
+      <fieldset class="field" style="border:0;padding:0;margin-inline:0"><legend class="legend">Як показувати авторство?</legend><div class="choices">
+        <div class="choice"><input type="radio" id="author-name" name="author" value="Ім’я або псевдонім" checked><label for="author-name">Ім’я або псевдонім <span class="hint">Ти самостійно вирішуєш, яке ім’я вказати.</span></label></div>
+        <div class="choice"><input type="radio" id="author-anon" name="author" value="Анонімно для читачів"><label for="author-anon">Анонімно для читачів <span class="hint">Це лише вибір у макеті, а не технічна гарантія анонімності.</span></label></div>
+      </div></fieldset>
+      <div class="field" id="name-field"><label for="display-name">Ім’я або псевдонім</label><input id="display-name" name="displayName" maxlength="60" placeholder="Як до тебе звертатися"></div>
+      <fieldset class="field" style="border:0;padding:0;margin-inline:0"><legend class="legend">Видимість історії</legend><div class="choices">
+        <div class="choice"><input type="radio" id="visibility-private" name="visibility" value="Приватна заявка на перевірку" checked><label for="visibility-private">Приватна заявка на перевірку <span class="hint">Рекомендований варіант для майбутнього пілоту. Не означає, що заявка реально надсилається.</span></label></div>
+        <div class="choice"><input type="radio" id="visibility-public" name="visibility" value="Публічна після окремого схвалення"><label for="visibility-public">Публічна після окремого схвалення <span class="hint">У майбутньому публікація можлива лише після перевірки та окремої згоди.</span></label></div>
+      </div></fieldset>
+      <div class="notice"><strong>Перед публікацією</strong>Ти зможеш переглянути точний текст, ім’я та рівень видимості. Згода на публікацію має бути окремою від прийняття правил спільноти.</div>
+      <div class="check"><input type="checkbox" id="guidelines"><label for="guidelines">Я ознайомився/лася з <a href="../../docs/COMMUNITY_GUIDELINES.md" target="_blank" rel="noopener">проєктом правил спільноти</a>.</label></div>
+      <div class="check"><input type="checkbox" id="consent"><label for="consent">Я розумію, що в реальному сервісі публікація потребуватиме окремої, чіткої згоди. Це тестова взаємодія, не юридична згода.</label></div>
+      <button class="button" type="submit">Оновити попередній перегляд</button>
+      <p class="small" id="form-status" aria-live="polite">Це лише локальний макет. Кнопка не надсилає історію.</p>
+    </form>
+
+    <aside class="panel preview" aria-labelledby="preview-title">
+      <div class="eyebrow">Попередній перегляд</div>
+      <h2 id="preview-title">Так може виглядати твоя історія</h2>
+      <h3 id="preview-heading" class="empty">Назва твоєї історії</h3>
+      <p id="preview-story" class="preview-body empty">Текст з’явиться тут, коли ти почнеш писати.</p>
+      <div class="preview-meta"><div><strong>Авторство:</strong> <span id="preview-author">Ім’я або псевдонім</span></div><div><strong>Тема:</strong> <span id="preview-topic">Не вибрано</span></div><div><strong>Видимість:</strong> <span id="preview-visibility">Приватна заявка на перевірку</span></div></div>
+      <div class="status" id="preview-status">Статус макета: чернетка на цьому екрані. Нічого не надіслано.</div>
+    </aside>
+  </div>
+</main>
+<footer><div class="shell">HUMANITY · Концептуальний інтерактивний макет · Без сервера та збереження даних</div></footer>
+<script>
+(() => {
+  const form = document.getElementById('story-form');
+  const title = document.getElementById('title');
+  const story = document.getElementById('story');
+  const name = document.getElementById('display-name');
+  const count = document.getElementById('count');
+  const byId = id => document.getElementById(id);
+  const selected = field => form.querySelector('input[name="' + field + '"]:checked')?.value || '';
+  const update = () => {
+    count.textContent = String(story.value.length);
+    byId('preview-heading').textContent = title.value.trim() || 'Назва твоєї історії';
+    byId('preview-story').textContent = story.value.trim() || 'Текст з’явиться тут, коли ти почнеш писати.';
+    byId('preview-author').textContent = selected('author') === 'Анонімно для читачів' ? 'Анонімно для читачів' : (name.value.trim() || 'Ім’я або псевдонім');
+    byId('preview-topic').textContent = byId('topic').value || 'Не вибрано';
+    byId('preview-visibility').textContent = selected('visibility');
+    byId('name-field').hidden = selected('author') === 'Анонімно для читачів';
+    byId('preview-heading').classList.toggle('empty', !title.value.trim());
+    byId('preview-story').classList.toggle('empty', !story.value.trim());
+  };
+  form.addEventListener('input', update);
+  form.addEventListener('change', update);
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    if (!story.value.trim()) {
+      byId('form-status').textContent = 'Додай текст історії, щоб побачити попередній перегляд.';
+      story.focus();
+      return;
+    }
+    if (!byId('guidelines').checked || !byId('consent').checked) {
+      byId('form-status').textContent = 'Для демонстрації познач обидва підтвердження. Це не є реальною згодою на публікацію.';
+      return;
+    }
+    update();
+    byId('form-status').textContent = 'Попередній перегляд оновлено. Історію НЕ надіслано й НЕ збережено.';
+    byId('preview-status').textContent = 'Готово для перегляду — не відправлено. Це локальна демонстрація без збереження.';
+  });
+  update();
+})();
+</script>
+</body>
+</html>
