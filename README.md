@@ -10,6 +10,8 @@ The repository currently contains an early, static website prototype. It is a pr
 - **Primary language:** Ukrainian
 - **Entry point:** [HUMANITY MVP page](HUMANITY_MVP_0.1/HUMANITY_mvp/index.html)
 - **Product direction:** see [Product brief and roadmap](docs/PRODUCT_BRIEF.md)
+- **Story journey:** see [Story submission experience](docs/STORY_SUBMISSION_FLOW.md)
+- **Trust and safety:** see [Community guidelines and moderation framework](docs/COMMUNITY_GUIDELINES.md)
 
 ## Run locally
 
