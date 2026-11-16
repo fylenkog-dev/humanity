@@ -1,14 +1,134 @@
 <!doctype html>
 <html lang="uk">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="HUMANITY — простір людських історій, цінностей і зв'язку.">
-<title>HUMANITY — Stories connect us</title>
-<style>
-:root{--ink:#20352d;--muted:#64756d;--paper:#f5f3eb;--green:#315b49;--line:#dce2d8;--white:#fff}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif}header{max-width:1120px;margin:auto;padding:24px 6%;display:flex;justify-content:space-between;align-items:center}.logo{font-weight:800;letter-spacing:.16em}.nav{display:flex;gap:24px;color:var(--muted);font-size:14px}a{color:inherit;text-decoration:none}.btn{display:inline-block;padding:13px 21px;border-radius:999px;background:var(--green);color:white;font-weight:650}.btn.secondary{background:transparent;color:var(--green);border:1px solid #9eafa4}.hero{max-width:1120px;margin:50px auto 80px;padding:0 6%;display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center}.eyebrow{text-transform:uppercase;letter-spacing:.18em;color:var(--green);font-size:12px;font-weight:700}h1{font-size:clamp(46px,7vw,82px);line-height:.99;letter-spacing:-.055em;margin:18px 0 24px;max-width:700px}.lead{font-size:19px;color:var(--muted);max-width:540px}.actions{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}.art{min-height:390px;border-radius:48% 48% 24px 24px;background:linear-gradient(145deg,#dce7d9,#b6cbb9 55%,#e9d9c3);display:grid;place-items:center;position:relative;overflow:hidden}.art:before,.art:after{content:"";position:absolute;border:1px solid #fff9;border-radius:50%;width:260px;height:260px}.art:after{width:360px;height:360px}.circle{width:170px;height:170px;border-radius:50%;background:#f5f3ebcc;display:grid;place-items:center;font-size:52px;z-index:1}section{max-width:1120px;margin:0 auto;padding:0 6% 76px}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:24px}h2{font-size:34px;letter-spacing:-.04em;margin:6px 0}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:24px}.tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--green);font-weight:700}.card h3{font-size:21px;line-height:1.2;margin:14px 0 10px}.card p{color:var(--muted);margin:0}.invite{background:#e5eadf;border-radius:24px;padding:42px;display:flex;justify-content:space-between;align-items:center;gap:24px}footer{border-top:1px solid var(--line);padding:28px 6%;color:var(--muted);font-size:13px;text-align:center}@media(max-width:760px){.nav{display:none}.hero{grid-template-columns:1fr;margin-top:25px;gap:30px}.art{min-height:260px}.cards{grid-template-columns:1fr}.invite{display:block}.section-head{display:block}}
-</style></head><body>
-<header><a class="logo" href="#">HUMANITY</a><nav class="nav"><a href="#stories">Історії</a><a href="#values">Цінності</a><a href="#about">Про проєкт</a></nav><a href="#share" class="btn">Поділитися історією</a></header>
-<main><div class="hero"><div><div class="eyebrow">A global space for human connection</div><h1>Кожна історія має значення.</h1><p class="lead">HUMANITY — простір, де люди діляться досвідом, відкривають спільні цінності та знаходять зв'язок одне з одним.</p><div class="actions"><a class="btn" href="#stories">Читати історії</a><a class="btn secondary" href="#about">Дізнатися більше</a></div></div><div class="art" aria-label="Абстрактна ілюстрація єдності"><div class="circle">✳</div></div></div>
-<section id="stories"><div class="section-head"><div><div class="eyebrow">Voices of humanity</div><h2>Історії, що зближують</h2></div></div><div class="cards"><article class="card"><div class="tag">Сміливість · Україна</div><h3>Почати спочатку — теж сила</h3><p>Історія про маленькі кроки, підтримку й здатність відновлюватися після змін.</p></article><article class="card"><div class="tag">Доброта · Кенія</div><h3>Коли незнайомці стають спільнотою</h3><p>Про простий жест допомоги, який створив зв'язок між людьми.</p></article><article class="card"><div class="tag">Надія · Бразилія</div><h3>Мрія, якою поділилися</h3><p>Про те, як відверта розмова може надихнути ціле коло друзів.</p></article></div></section>
-<section id="values"><div class="eyebrow">What connects us</div><h2>Цінності без кордонів</h2><div class="cards"><article class="card"><div class="tag">01</div><h3>Гідність</h3><p>Кожна людина заслуговує бути почутою.</p></article><article class="card"><div class="tag">02</div><h3>Емпатія</h3><p>Ми слухаємо, щоб зрозуміти, а не оцінити.</p></article><article class="card"><div class="tag">03</div><h3>Єдність</h3><p>Різні досвіди можуть створювати спільне майбутнє.</p></article></div></section>
-<section id="about"><div class="invite"><div><div class="eyebrow">Your voice matters</div><h2>Твоя історія — частина людства.</h2><p>Долучайся до простору людських історій.</p></div><a class="btn" id="share" href="mailto:hello@humanity.example?subject=My%20HUMANITY%20story">Поділитися історією</a></div></section></main><footer>HUMANITY · Stories connect us · Концептуальний прототип 0.1</footer></body></html>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="HUMANITY — простір людських історій, цінностей і людського зв’язку.">
+  <meta name="theme-color" content="#f5f3eb">
+  <title>HUMANITY — Кожна історія має значення</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #20352d;
+      --muted: #64756d;
+      --paper: #f5f3eb;
+      --green: #315b49;
+      --line: #dce2d8;
+      --white: #fff;
+      --soft: #e5eadf;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-size: 16px; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible { outline: 3px solid #b06a35; outline-offset: 4px; border-radius: 5px; }
+    .skip-link { position: absolute; left: 1rem; top: -5rem; z-index: 10; padding: .7rem 1rem; background: var(--white); }
+    .skip-link:focus { top: 1rem; }
+    .shell { width: min(1120px, 88%); margin-inline: auto; }
+    header { min-height: 88px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .logo { font-size: 1rem; font-weight: 850; letter-spacing: .18em; }
+    nav { display: flex; gap: 26px; color: var(--muted); font-size: .9rem; }
+    nav a:hover, .text-link:hover { color: var(--green); text-decoration: underline; text-underline-offset: 4px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 21px; border: 1px solid var(--green); border-radius: 999px; background: var(--green); color: white; font-weight: 700; transition: transform .2s ease, background .2s ease; }
+    .button:hover { transform: translateY(-2px); background: #244536; }
+    .button.secondary { background: transparent; color: var(--green); }
+    .button.secondary:hover { background: #e9eee7; }
+    .eyebrow { color: var(--green); font-size: .75rem; font-weight: 800; letter-spacing: .17em; text-transform: uppercase; }
+    .hero { display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 56px; padding-block: 66px 88px; }
+    h1 { max-width: 720px; margin: 16px 0 22px; font-size: clamp(3rem, 7vw, 5.6rem); line-height: .99; letter-spacing: -.06em; }
+    .lead { max-width: 570px; color: var(--muted); font-size: clamp(1.08rem, 2vw, 1.25rem); }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .art { position: relative; display: grid; min-height: 390px; place-items: center; overflow: hidden; border-radius: 48% 48% 24px 24px; background: linear-gradient(145deg, #dce7d9, #b6cbb9 55%, #e9d9c3); }
+    .art::before, .art::after { position: absolute; width: 260px; aspect-ratio: 1; border: 1px solid #ffffff99; border-radius: 50%; content: ""; }
+    .art::after { width: 360px; }
+    .art-mark { z-index: 1; display: grid; width: 170px; aspect-ratio: 1; place-items: center; border-radius: 50%; background: #f5f3ebdd; font-size: 3.2rem; }
+    section { padding-bottom: 78px; scroll-margin-top: 24px; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 25px; }
+    h2 { margin: 7px 0 0; font-size: clamp(1.8rem, 4vw, 2.25rem); line-height: 1.15; letter-spacing: -.045em; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .card { min-height: 205px; padding: 24px; border: 1px solid var(--line); border-radius: 18px; background: var(--white); }
+    .tag { color: var(--green); font-size: .7rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    h3 { margin: 14px 0 9px; font-size: 1.3rem; line-height: 1.22; }
+    .card p, .invite p { margin: 0; color: var(--muted); }
+    .demo-note { margin: 0 0 16px; color: var(--muted); font-size: .85rem; }
+    .invite { display: flex; align-items: center; justify-content: space-between; gap: 28px; padding: clamp(26px, 5vw, 44px); border-radius: 24px; background: var(--soft); }
+    .invite h2 { max-width: 620px; margin-bottom: 12px; }
+    footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; text-align: center; }
+    @media (max-width: 760px) {
+      header { min-height: 76px; flex-wrap: wrap; padding-block: 16px; }
+      nav { order: 3; width: 100%; justify-content: space-between; gap: 12px; font-size: .82rem; }
+      header > .button { min-height: 42px; padding: 9px 14px; font-size: .85rem; }
+      .hero { grid-template-columns: 1fr; gap: 30px; padding-block: 42px 65px; }
+      .art { min-height: 260px; }
+      .cards { grid-template-columns: 1fr; }
+      .card { min-height: auto; }
+      .invite { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти до основного вмісту</a>
+  <header class="shell">
+    <a class="logo" href="#top" aria-label="HUMANITY — на початок">HUMANITY</a>
+    <nav aria-label="Головна навігація">
+      <a href="#stories">Історії</a>
+      <a href="#values">Цінності</a>
+      <a href="#about">Про проєкт</a>
+    </nav>
+    <a class="button secondary" href="#share">Долучитися</a>
+  </header>
+
+  <main id="main" class="shell">
+    <div id="top" class="hero">
+      <div>
+        <div class="eyebrow">Простір людського зв’язку</div>
+        <h1>Кожна історія має значення.</h1>
+        <p class="lead">HUMANITY — простір, де люди можуть ділитися досвідом, відкривати спільні цінності та знаходити зв’язок одне з одним.</p>
+        <div class="actions">
+          <a class="button" href="#stories">Відкрити історії</a>
+          <a class="button secondary" href="#about">Дізнатися більше</a>
+        </div>
+      </div>
+      <div class="art" role="img" aria-label="Абстрактний символ єдності та взаємозв’язку">
+        <div class="art-mark" aria-hidden="true">✳</div>
+      </div>
+    </div>
+
+    <section id="stories" aria-labelledby="stories-title">
+      <div class="section-heading">
+        <div><div class="eyebrow">Голоси людей</div><h2 id="stories-title">Історії, що зближують</h2></div>
+      </div>
+      <p class="demo-note">Приклади нижче — демонстраційні тексти, а не реальні історії користувачів.</p>
+      <div class="cards">
+        <article class="card"><div class="tag">Сміливість · приклад</div><h3>Почати спочатку — теж сила</h3><p>Про маленькі кроки, підтримку й здатність відновлюватися після змін.</p></article>
+        <article class="card"><div class="tag">Доброта · приклад</div><h3>Коли незнайомці стають спільнотою</h3><p>Про простий жест допомоги, який може створити зв’язок між людьми.</p></article>
+        <article class="card"><div class="tag">Надія · приклад</div><h3>Мрія, якою поділилися</h3><p>Про те, як відверта розмова здатна надихнути ціле коло друзів.</p></article>
+      </div>
+    </section>
+
+    <section id="values" aria-labelledby="values-title">
+      <div class="eyebrow">Що нас об’єднує</div>
+      <h2 id="values-title" style="margin-bottom:25px">Цінності без кордонів</h2>
+      <div class="cards">
+        <article class="card"><div class="tag">01</div><h3>Гідність</h3><p>Кожна людина заслуговує на повагу та можливість бути почутою.</p></article>
+        <article class="card"><div class="tag">02</div><h3>Емпатія</h3><p>Ми слухаємо, щоб зрозуміти, а не поспішати з оцінками.</p></article>
+        <article class="card"><div class="tag">03</div><h3>Єдність</h3><p>Різні досвіди можуть допомагати будувати спільне майбутнє.</p></article>
+      </div>
+    </section>
+
+    <section id="about" aria-labelledby="about-title">
+      <div class="invite">
+        <div><div class="eyebrow">Твій голос важливий</div><h2 id="about-title">Твоя історія — частина людства.</h2><p>Ми створюємо простір для уважного слухання, взаємної поваги та людських історій.</p></div>
+        <a class="button" href="#share" id="share">Долучитися до HUMANITY</a>
+      </div>
+      <p class="demo-note" style="margin-top:14px">Це концептуальний прототип. Надсилання та публікація історій поки не підключені.</p>
+    </section>
+  </main>
+  <footer><div class="shell">HUMANITY · Історії створюють зв’язок · Концептуальний прототип 0.2</div></footer>
+</body>
+</html>
