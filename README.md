@@ -2,7 +2,7 @@
 
 **HUMANITY** is a concept for a global space where people can share personal stories, discover common values, and build human connection across backgrounds and borders.
 
-The repository currently contains an early, static website prototype. It is a product exploration, not a live community platform.
+The repository contains an early website prototype with a browser-rendered 3D Earth experience. It is a product exploration, not a live community platform.
 
 ## Project status
 
@@ -23,7 +23,8 @@ No build tools or dependencies are required. Open `HUMANITY_MVP_0.1/HUMANITY_mvp
 
 - Responsive landing page
 - Introductory explanation of the project
-- Interactive schematic world map with sample story points
+- Interactive 3D Earth with satellite-style surface texture, atmosphere, cloud layer, star field, and sample story markers
+- Mouse/touch orbit and zoom controls, plus small decorative planets in the background
 - Story preview panel, topic filters, text search, and zoom controls
 - Local-only sample reactions (not transmitted or saved)
 - Core values section
@@ -31,7 +32,7 @@ No build tools or dependencies are required. Open `HUMANITY_MVP_0.1/HUMANITY_mvp
 
 ## Not implemented
 
-There is no backend, database, user account system, persistent story submission, publishing, moderation, real-world map tiles, live story search, geolocation, analytics, or production deployment. The current map, search, filters, zoom, and reactions operate only on built-in demonstration content. The prototype does not collect or store visitor data.
+There is no backend, database, user account system, persistent story submission, publishing, moderation, live story search, geolocation, analytics, or production deployment. The 3D Earth uses externally hosted demo textures and Three.js; story points, search, filters, and reactions operate only on built-in demonstration content. The prototype does not collect or store visitor data.
 
 ## Product principles
 
