@@ -29,12 +29,12 @@ main{position:relative;z-index:1;width:min(1500px,94%);margin:auto}.intro{paddin
 <div class="space" aria-hidden="true"><div class="nebula"></div></div>
 <header><a class="brand" href="index.html">HUMANITY<span>.</span></a><nav><a href="index.html">Головна</a><a href="map.html">Планета історій</a><a href="story.html">Моя історія</a></nav><a class="share" href="story.html">＋ Поділитися історією</a></header>
 <main>
-<section class="intro"><div class="eyebrow">Ми всі живемо під одним небом</div><h1>Наша планета. Наші історії.</h1><p>Повільно обертай Землю, відкривай світлові точки й слухай історії людей з різних куточків світу.</p></section>
+<section class="intro"><div class="eyebrow">Ми всі живемо під одним небом</div><h1>Земля велика. А історії роблять нас ближчими.</h1><p>Покрути Землю, обери вогник і почитай чиюсь історію. Можливо, вона нагадає тобі про щось своє.</p></section>
 <section class="stage">
-<div class="planet-stage"><canvas id="universe" aria-label="Тривимірна модель Землі з точками людських історій"></canvas><div class="planet-label">HUMANITY · EARTH <strong>Світ, у якому ми всі пов'язані</strong></div><div class="planet-controls"><button class="glass-btn" id="zoom-out" aria-label="Віддалити">−</button><button class="glass-btn" id="zoom-in" aria-label="Наблизити">＋</button><button class="glass-btn" id="reset-view" aria-label="Початковий вигляд">↺</button></div></div>
+<div class="planet-stage"><canvas id="universe" aria-label="Тривимірна модель Землі з точками людських історій"></canvas><div class="planet-label">HUMANITY · EARTH <strong>Ми ближче, ніж здається</strong></div><div class="planet-controls"><button class="glass-btn" id="zoom-out" aria-label="Віддалити">−</button><button class="glass-btn" id="zoom-in" aria-label="Наблизити">＋</button><button class="glass-btn" id="reset-view" aria-label="Початковий вигляд">↺</button></div></div>
 <aside class="side">
-<div class="glass tools"><h2>Знайди історію</h2><input class="search" id="story-search" type="search" placeholder="Країна, тема або назва…" aria-label="Пошук історій"><select class="filter" id="topic-filter" aria-label="Тема історії"><option value="">Усі теми</option><option>Надія</option><option>Спільнота</option><option>Сміливість</option><option>Турбота</option><option>Радість</option></select><p class="hint">Обери точку на планеті або знайди історію через пошук.</p></div>
-<div class="glass story-card" id="story-card" aria-live="polite"><div class="empty"><div class="heart">♡</div><h2>Історії чекають на тебе</h2><p>Натисни на світну точку на Землі, щоб відкрити людську історію.</p></div></div>
+<div class="glass tools"><h2>Знайти щось близьке</h2><input class="search" id="story-search" type="search" placeholder="Країна, тема або назва…" aria-label="Пошук історій"><select class="filter" id="topic-filter" aria-label="Тема історії"><option value="">Усі теми</option><option>Надія</option><option>Спільнота</option><option>Сміливість</option><option>Турбота</option><option>Радість</option></select><p class="hint">Можеш просто покрутити планету або пошукати історію за країною чи темою.</p></div>
+<div class="glass story-card" id="story-card" aria-live="polite"><div class="empty"><div class="heart">♡</div><h2>Тут хтось хоче поділитися</h2><p>Торкнись вогника на Землі — і відкриється чиясь історія.</p></div></div>
 </aside>
 </section>
 <div class="footerline"><span class="status"><i></i> Планета обертається повільно. Можна перетягувати й наближати.</span><span>Демонстраційні історії · Точки не позначають точні адреси</span></div>
@@ -51,7 +51,18 @@ const stories=[
 {place:"Бразилія",lat:-10,lon:-52,topic:"Радість",title:"Музика з відчиненого вікна",text:"Щосуботи сусід вмикає музику, поки готує сніданок. Спершу я дивувалася, а тепер упізнаю цю мелодію й усміхаюся. Виявилося, що радість іноді приходить з чужої кухні.",author:"Луїза · демо"}
 ];
 const canvas=document.querySelector("#universe"),panel=document.querySelector("#story-card");
-if(!window.THREE||!THREE.OrbitControls){canvas.outerHTML='<div style="padding:40px;text-align:center;color:#dce8f7">Не вдалося завантажити 3D-бібліотеку. Перевір підключення до інтернету й онови сторінку.</div>';return;}
+if(!window.THREE||!THREE.OrbitControls){
+ const stage=document.querySelector(".planet-stage");
+ canvas.remove();
+ const globe=document.createElement("div");globe.className="fallback-earth";globe.setAttribute("role","img");globe.setAttribute("aria-label","Земля, що повільно обертається");stage.appendChild(globe);
+ const fallbackPoints=[{x:49,y:39,i:0},{x:55,y:62,i:1},{x:28,y:31,i:2},{x:75,y:43,i:3},{x:35,y:69,i:4}];
+ fallbackPoints.forEach(p=>{const b=document.createElement("button");b.className="fallback-pin";b.style.left=p.x+"%";b.style.top=p.y+"%";b.setAttribute("aria-label","Історія з "+stories[p.i].place);b.addEventListener("click",()=>{const s=stories[p.i];panel.innerHTML='<div class="tag">'+s.topic+'</div><h2>'+s.title+'</h2><p class="location">⌖ '+s.place+' · '+s.author+'</p><p class="story-copy">'+s.text+'</p><p class="demo">Це приклад історії для демо. Реальні історії ще не підключені.</p>';});stage.appendChild(b);});
+ const status=document.querySelector(".status");if(status)status.innerHTML="<i></i> Земля повільно обертається — торкнись світної точки.";
+ document.querySelector("#zoom-in").onclick=()=>globe.style.transform="translate(-50%,-50%) scale(1.12)";
+ document.querySelector("#zoom-out").onclick=()=>globe.style.transform="translate(-50%,-50%) scale(.9)";
+ document.querySelector("#reset-view").onclick=()=>globe.style.transform="translate(-50%,-50%) scale(1)";
+ return;
+}
 const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(34,1,.1,100);camera.position.set(0,0,5.1);
 const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:"high-performance"});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.outputEncoding=THREE.sRGBEncoding;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.18;
 const controls=new THREE.OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.045;controls.enablePan=false;controls.minDistance=2.65;controls.maxDistance=8;controls.autoRotate=true;controls.autoRotateSpeed=.28;
