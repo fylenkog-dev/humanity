@@ -12,8 +12,8 @@
 .nebula{position:absolute;width:60vw;height:60vw;left:24%;top:5%;border-radius:50%;background:radial-gradient(circle,#23416a35,transparent 65%);filter:blur(35px)}
 header{position:relative;z-index:5;display:flex;align-items:center;justify-content:space-between;width:min(1500px,94%);margin:auto;padding:22px 0}.brand{font-size:1rem;font-weight:850;letter-spacing:.24em}.brand span{color:var(--mint)}nav{display:flex;gap:26px;color:#c0cada;font-size:.9rem}nav a:hover{color:white}.share{border:1px solid #9bd8c080;border-radius:999px;padding:10px 17px;background:#9bd8c018;color:#d7f5e8;font-weight:650}
 main{position:relative;z-index:1;width:min(1500px,94%);margin:auto}.intro{padding:26px 0 18px;max-width:720px}.eyebrow{color:var(--mint);font-size:.7rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase}.intro h1{font-family:Georgia,serif;font-size:clamp(2.35rem,4.8vw,4.5rem);line-height:1.03;letter-spacing:-.045em;font-weight:400;margin:9px 0 12px}.intro p{margin:0;color:#b5c1d1;max-width:590px;font-size:1rem}
-.stage{display:grid;grid-template-columns:minmax(0,1fr) 350px;gap:22px;align-items:center;min-height:590px;padding-bottom:35px}.planet-stage{position:relative;min-height:570px;display:grid;place-items:center;overflow:hidden;border:1px solid #ffffff0d;border-radius:30px;background:radial-gradient(ellipse at 52% 48%,#14284955,transparent 58%)}#universe{display:block;width:100%;height:100%;touch-action:pan-y}
-.fallback-earth{display:none;position:absolute;width:min(440px,76%);aspect-ratio:1;left:50%;top:48%;transform:translate(-50%,-50%);border-radius:50%;overflow:hidden;background:radial-gradient(circle at 32% 27%,#7ab6d4 0,#24618b 34%,#12385f 68%,#071b34 100%);box-shadow:inset -35px -18px 55px #020817cc,inset 12px 9px 28px #d7f3ff66,0 0 0 2px #b8e5ff55,0 0 55px #4b9bd477;animation:earth-turn 90s linear infinite}
+.stage{display:grid;grid-template-columns:minmax(0,1fr) 350px;gap:22px;align-items:center;min-height:590px;padding-bottom:35px}.planet-stage{position:relative;min-height:570px;display:grid;place-items:center;overflow:hidden;border:1px solid #ffffff0d;border-radius:30px;background:radial-gradient(ellipse at 52% 48%,#14284955,transparent 58%)}#universe{display:none;width:100%;height:100%;touch-action:pan-y}
+.fallback-earth{display:block;position:absolute;width:min(440px,76%);aspect-ratio:1;left:50%;top:48%;transform:translate(-50%,-50%);border-radius:50%;overflow:hidden;background:radial-gradient(circle at 32% 27%,#7ab6d4 0,#24618b 34%,#12385f 68%,#071b34 100%);box-shadow:inset -35px -18px 55px #020817cc,inset 12px 9px 28px #d7f3ff66,0 0 0 2px #b8e5ff55,0 0 55px #4b9bd477;animation:earth-turn 90s linear infinite}
 .fallback-earth .texture-strip{position:absolute;inset:0;width:200%;height:100%;background-image:url("https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg");background-size:50% 100%;background-repeat:repeat-x;animation:earth-map-drift 110s linear infinite}
 .fallback-earth .fallback-pin-layer{position:absolute;inset:0;width:200%;height:100%;animation:earth-map-drift 110s linear infinite;z-index:2}
 .fallback-earth .fallback-pin{position:absolute;transform:translate(-50%,-50%);width:11px;height:11px;border:2px solid #fff8e9;border-radius:50%;background:#f4c985;box-shadow:0 0 0 5px #f4c98530,0 0 18px 5px #f4c985aa}
@@ -83,7 +83,7 @@ function openFallbackStory(i){
 }
 if(!window.THREE||!THREE.OrbitControls||!window.WebGLRenderingContext||!canvas.getContext("webgl")){
  showStory=openFallbackStory;
- fallbackEarth.style.display="block";
+ fallbackEarth.style.display="block";canvas.style.display="none";
  const status=document.querySelector(".status");if(status)status.innerHTML="<i></i> Земля повільно обертається — торкнись світної точки.";
  document.querySelector("#zoom-in").onclick=()=>fallbackEarth.style.scale="1.12";
  document.querySelector("#zoom-out").onclick=()=>fallbackEarth.style.scale=".9";
@@ -91,8 +91,9 @@ if(!window.THREE||!THREE.OrbitControls||!window.WebGLRenderingContext||!canvas.g
  return;
 }
 fallbackEarth.style.display="none";
+canvas.style.display="block";
 const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(34,1,.1,100);camera.position.set(0,0,5.1);
-const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:"high-performance"});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.outputEncoding=THREE.sRGBEncoding;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.18;
+let renderer;try{renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:"high-performance"});}catch(error){canvas.style.display="none";fallbackEarth.style.display="block";showStory=openFallbackStory;document.querySelector(".status").innerHTML="<i></i> Показуємо резервний глобус — 3D-режим недоступний.";document.querySelector("#zoom-in").onclick=()=>fallbackEarth.style.scale="1.12";document.querySelector("#zoom-out").onclick=()=>fallbackEarth.style.scale=".9";document.querySelector("#reset-view").onclick=()=>fallbackEarth.style.scale="1";return;}renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.outputEncoding=THREE.sRGBEncoding;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.18;
 const controls=new THREE.OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.045;controls.enablePan=false;controls.minDistance=2.65;controls.maxDistance=8;controls.autoRotate=true;controls.autoRotateSpeed=.28;
 const root=new THREE.Group();scene.add(root);
 const ambient=new THREE.AmbientLight(0x7185aa,.52);scene.add(ambient);const sun=new THREE.DirectionalLight(0xffe6c4,2.25);sun.position.set(-4,2.5,5);scene.add(sun);
