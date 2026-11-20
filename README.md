@@ -14,6 +14,7 @@ The repository contains an early website prototype with a browser-rendered 3D Ea
 - **Story journey:** see [Story submission experience](docs/STORY_SUBMISSION_FLOW.md)
 - **Interactive demos:** [world story map](HUMANITY_MVP_0.1/HUMANITY_mvp/map.html) · [local-only story form](HUMANITY_MVP_0.1/HUMANITY_mvp/story.html)
 - **Trust and safety:** see [Community guidelines and moderation framework](docs/COMMUNITY_GUIDELINES.md)
+- **Product inspiration:** see [Research and integration roadmap](docs/INSPIRATION_AND_INTEGRATIONS.md)
 
 ## Run locally
 
@@ -26,6 +27,7 @@ No build tools or dependencies are required. Open `HUMANITY_MVP_0.1/HUMANITY_mvp
 - Interactive 3D Earth with satellite-style surface texture, atmosphere, cloud layer, star field, and sample story markers
 - Mouse/touch orbit and zoom controls, plus small decorative planets in the background
 - Story preview panel, topic filters, text search, and zoom controls
+- A guided five-story “Humanity Journey” across countries, with subtle symbolic connection arcs on the 3D globe
 - Local-only sample reactions (not transmitted or saved)
 - Core values section
 - Accessibility basics: semantic landmarks, skip link, visible keyboard focus, and reduced-motion support
