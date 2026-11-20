@@ -18,7 +18,7 @@ The repository contains an early website prototype with a browser-rendered 3D Ea
 
 ## Run locally
 
-No build tools or dependencies are required. Open `HUMANITY_MVP_0.1/HUMANITY_mvp/index.html` in a modern browser.
+No build step or API key is required. Open `HUMANITY_MVP_0.1/HUMANITY_mvp/index.html` in a modern browser. The 3D map loads Three.js and Earth textures from external CDNs, so an internet connection is needed for the full globe experience. A simpler animated fallback is shown when WebGL or the 3D library is unavailable; its satellite texture also needs internet access.
 
 ## Current prototype includes
 
@@ -28,6 +28,7 @@ No build tools or dependencies are required. Open `HUMANITY_MVP_0.1/HUMANITY_mvp
 - Mouse/touch orbit and zoom controls, plus small decorative planets in the background
 - Story preview panel, topic filters, text search, and zoom controls
 - A guided five-story “Humanity Journey” across countries, with subtle symbolic connection arcs on the 3D globe
+- A non-WebGL fallback globe with selectable sample stories and working topic/search filters
 - Local-only sample reactions (not transmitted or saved)
 - Core values section
 - Accessibility basics: semantic landmarks, skip link, visible keyboard focus, and reduced-motion support
