@@ -29,9 +29,17 @@ These are hypotheses to validate with research, not confirmed user segments.
 
 ## 4. Current state
 
-The repository contains a static Ukrainian landing-page prototype. It has an introduction, illustrative story cards, values, and a participation call-to-action. It has no working submission flow or data persistence.
+The repository contains a static Ukrainian landing page, a browser-rendered 3D story-map prototype, and a local-only story-form preview. The form does not submit to a server, publish content, or persist data.
 
 The story cards are explicitly illustrative and must not be mistaken for real user submissions.
+
+## Localization status
+
+- **Implemented:** Ukrainian interface only; the current HTML pages declare `lang="uk"`.
+- **Not implemented:** English, Spanish, Portuguese, German, French, Polish, Japanese, and Chinese translations; there is no language selector or translation catalog.
+- **Planned sequence:** Ukrainian and English as the initial base languages, followed by Spanish, Portuguese, German, French, Polish, Japanese, and Chinese.
+- **Open decision:** choose Simplified Chinese (`zh-Hans`), Traditional Chinese (`zh-Hant`), or both before preparing Chinese copy.
+- Translations should use a shared glossary and be reviewed in context by fluent speakers; avoid publishing uncertain wording.
 
 ## 5. Proposed roadmap
 
