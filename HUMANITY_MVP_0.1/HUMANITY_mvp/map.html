@@ -66,10 +66,16 @@ stories.forEach((story,i)=>{
  const x=(story.lon+180)/360*50,y=(90-story.lat)/180*100;
  fallbackPoints.push({x,y,i});
  [x,x+50].forEach(px=>{
-  const b=document.createElement("button");b.className="fallback-pin";b.style.left=px+"%";b.style.top=y+"%";b.setAttribute("aria-label","Історія з "+story.place);
+  const b=document.createElement("button");b.className="fallback-pin";b.dataset.storyIndex=i;b.style.left=px+"%";b.style.top=y+"%";b.setAttribute("aria-label","Історія з "+story.place);
   b.addEventListener("click",()=>openFallbackStory(i));fallbackPinLayer.appendChild(b);
  });
 });
+function filterFallback(){
+ const q=document.querySelector("#story-search").value.toLocaleLowerCase("uk"),topic=document.querySelector("#topic-filter").value;
+ fallbackPinLayer.querySelectorAll(".fallback-pin").forEach(pin=>{const s=stories[Number(pin.dataset.storyIndex)];pin.hidden=!!((q&&!((s.place+" "+s.title+" "+s.topic).toLocaleLowerCase("uk").includes(q)))||(topic&&s.topic!==topic));});
+}
+document.querySelector("#story-search").addEventListener("input",filterFallback);
+document.querySelector("#topic-filter").addEventListener("change",filterFallback);
 function openFallbackStory(i){
  const s=stories[i];panel.innerHTML='<div class="tag">'+s.topic+'</div><h2>'+s.title+'</h2><p class="location">⌖ '+s.place+' · '+s.author+'</p><p class="story-copy">'+s.text+'</p><div class="reactions"><button class="react" aria-pressed="false">♡ Відгукнулося <span>0</span></button><button class="react" aria-pressed="false">✦ Підтримую <span>0</span></button></div><p class="demo">Це приклад для демо — реакції ще нікуди не надсилаються.</p>';
  panel.querySelectorAll(".react").forEach(btn=>btn.addEventListener("click",()=>{const on=btn.getAttribute("aria-pressed")!=="true";btn.setAttribute("aria-pressed",String(on));btn.querySelector("span").textContent=on?"1":"0";}));
