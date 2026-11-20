@@ -29,6 +29,7 @@ No build step or API key is required. Open `HUMANITY_MVP_0.1/HUMANITY_mvp/index.
 - Story preview panel, topic filters, text search, and zoom controls
 - A guided five-story “Humanity Journey” across countries, with subtle symbolic connection arcs on the 3D globe
 - A non-WebGL fallback globe with selectable sample stories and working topic/search filters
+- A keyboard-accessible story list that opens the same story panel without requiring pointer interaction
 - Local-only sample reactions (not transmitted or saved)
 - Core values section
 - Accessibility basics: semantic landmarks, skip link, visible keyboard focus, and reduced-motion support
