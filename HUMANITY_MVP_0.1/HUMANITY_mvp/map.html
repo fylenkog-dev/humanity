@@ -113,6 +113,16 @@ main{width:min(1680px,96%)}
 @media(max-width:950px){.intro{padding:13px 0}.planet-stage{height:75vh;min-height:570px}.side{position:relative;top:auto;right:auto;width:100%;max-height:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:12px}.story-card{grid-column:1/-1}.orbit-hud{left:50%;top:16px;max-width:68%}.object-hud{bottom:76px}}
 @media(max-width:620px){header{width:92%;flex-wrap:wrap;gap:12px;padding:12px 0}nav{order:3;width:100%;justify-content:space-between;gap:10px;font-size:.78rem}main{width:92%}.intro h1{font-size:2rem}.planet-stage{height:70vh;min-height:490px;border-radius:18px}.scene-chip{top:12px;left:12px;font-size:.62rem}.orbit-hud{top:56px;max-width:calc(100% - 24px);width:calc(100% - 24px);left:12px;transform:none;justify-content:flex-start}.orbit-hud span{display:none}.space-tab{padding:7px 10px;font-size:.61rem}.object-hud{left:12px;bottom:70px;max-width:230px;padding:8px 10px;font-size:.67rem}.object-hud strong{font-size:1.1rem}.planet-label{left:13px;bottom:15px}.planet-controls{right:12px;bottom:12px}.glass-btn{width:35px;height:35px}.side{display:flex}.footerline{flex-direction:column;gap:5px}}
 @media(prefers-reduced-motion:reduce){.nebula,.space:before,.space:after,.fallback-earth,.fallback-earth .texture-strip{animation:none!important}}
+
+/* Planetarium scene finishing pass */
+.planet-stage{height:min(86vh,1040px);min-height:720px}
+.object-hud{max-width:360px;padding:14px 17px;font-size:.82rem}
+.object-hud strong{font-size:1.55rem}
+.orbit-hud{gap:9px}
+.space-tab{font-size:.72rem;padding:9px 17px}
+.scene-chip{font-size:.73rem}
+@media(max-width:950px){.planet-stage{height:77vh;min-height:600px}}
+@media(max-width:620px){.planet-stage{height:72vh;min-height:510px}.object-hud strong{font-size:1.16rem}}
 </style>
 </head>
 <body>
@@ -179,9 +189,9 @@ if(!window.THREE||!THREE.OrbitControls||!window.WebGLRenderingContext||!canvas.g
 }
 fallbackEarth.style.display="none";
 canvas.style.display="block";
-const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(34,1,.1,100);camera.position.set(0,0,5.1);
+const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(34,1,.1,100);camera.position.set(0,0,4.25);
 let renderer;try{renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:"high-performance"});}catch(error){canvas.style.display="none";fallbackEarth.style.display="block";showStory=openFallbackStory;document.querySelector(".status").innerHTML="<i></i> Показуємо резервний глобус — 3D-режим недоступний.";document.querySelector("#zoom-in").onclick=()=>fallbackEarth.style.scale="1.12";document.querySelector("#zoom-out").onclick=()=>fallbackEarth.style.scale=".9";document.querySelector("#reset-view").onclick=()=>fallbackEarth.style.scale="1";return;}renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.outputEncoding=THREE.sRGBEncoding;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.18;
-const controls=new THREE.OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.045;controls.enablePan=false;controls.minDistance=2.65;controls.maxDistance=8;controls.autoRotate=true;controls.autoRotateSpeed=.28;
+const controls=new THREE.OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.045;controls.enablePan=false;controls.minDistance=2.05;controls.maxDistance=9;controls.autoRotate=true;controls.autoRotateSpeed=.28;
 const root=new THREE.Group();scene.add(root);
 const ambient=new THREE.AmbientLight(0x7185aa,.52);scene.add(ambient);const sun=new THREE.DirectionalLight(0xffe6c4,2.25);sun.position.set(-4,2.5,5);scene.add(sun);
 const loader=new THREE.TextureLoader();loader.setCrossOrigin("anonymous");
@@ -210,13 +220,15 @@ const saturnGroup=new THREE.Group();solarGroup.add(saturnGroup);const saturn=new
 
 // Separate navigable solar-system scene. Distances and sizes are intentionally compressed for composition.
 const systemView=new THREE.Group();scene.add(systemView);systemView.visible=false;
-const systemSun=new THREE.Mesh(new THREE.SphereGeometry(.48,48,32),new THREE.MeshBasicMaterial({color:0xffc86b}));systemView.add(systemSun);
+const systemSun=new THREE.Mesh(new THREE.SphereGeometry(.48,48,32),new THREE.MeshBasicMaterial({color:0xffc86b}));systemView.add(systemSun);const sunLight=new THREE.PointLight(0xffd39a,2.4,30);systemView.add(sunLight);
 const sunGlow=new THREE.Sprite(new THREE.SpriteMaterial({map:(()=>{const cv=document.createElement("canvas");cv.width=cv.height=128;const cx=cv.getContext("2d"),g=cx.createRadialGradient(64,64,2,64,64,64);g.addColorStop(0,"rgba(255,218,145,.8)");g.addColorStop(.22,"rgba(255,176,80,.28)");g.addColorStop(1,"rgba(255,145,55,0)");cx.fillStyle=g;cx.fillRect(0,0,128,128);const tx=new THREE.CanvasTexture(cv);tx.encoding=THREE.sRGBEncoding;return tx;})(),transparent:true,depthWrite:false}));sunGlow.scale.set(2.2,2.2,1);systemSun.add(sunGlow);
 const systemPlanets=[];
+// A softly lit asteroid belt between Mars and Jupiter.
+const asteroidBelt=new THREE.Group();systemView.add(asteroidBelt);const asteroidMat=new THREE.MeshStandardMaterial({color:0x9a8d7d,roughness:1,metalness:.04});for(let i=0;i<420;i++){const a=Math.random()*Math.PI*2,r=2.88+Math.random()*.48,size=.008+Math.random()*.018;const rock=new THREE.Mesh(new THREE.IcosahedronGeometry(size,0),asteroidMat);rock.position.set(Math.cos(a)*r,Math.sin(a)*r*.72+(Math.random()-.5)*.1,(Math.random()-.5)*.22);rock.rotation.set(Math.random()*3,Math.random()*3,Math.random()*3);asteroidBelt.add(rock);}
 const planetSpecs=[["Меркурій",.055,0x9b958e,1.0,.045],["Венера",.085,0xd8b47d,1.45,.032],["Земля",.09,0x438bd0,1.95,.024],["Марс",.068,0xc66b4b,2.5,.019],["Юпітер",.22,0xcba77f,3.35,.012],["Сатурн",.19,0xd8c28e,4.25,.009],["Уран",.13,0x83c9cf,5.15,.007],["Нептун",.125,0x416ed0,6.05,.005]];
 planetSpecs.forEach((spec,index)=>{const [name,size,color,distance,speed]=spec;const orbitPoints=[];for(let j=0;j<160;j++){const a=j/160*Math.PI*2;orbitPoints.push(new THREE.Vector3(Math.cos(a)*distance,Math.sin(a)*distance*.72,0));}systemView.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(orbitPoints),new THREE.LineBasicMaterial({color:0x9bbfe0,transparent:true,opacity:.2})));const pivot=new THREE.Group();systemView.add(pivot);const body=new THREE.Mesh(new THREE.SphereGeometry(size,32,24),new THREE.MeshStandardMaterial({color,roughness:.88,metalness:.02,emissive:color,emissiveIntensity:.035}));body.position.x=distance;pivot.add(body);if(name==="Сатурн"){const r=new THREE.Mesh(new THREE.RingGeometry(size*1.35,size*2.05,64),new THREE.MeshBasicMaterial({color:0xd8c69e,side:THREE.DoubleSide,transparent:true,opacity:.78}));r.rotation.x=Math.PI/2.35;body.add(r);}systemPlanets.push({name,pivot,speed,body});});
 const systemCaption=document.querySelector(".object-hud");
-function setSpaceView(mode){const inSystem=mode==="system";root.visible=!inSystem;solarGroup.visible=!inSystem;systemView.visible=inSystem;controls.autoRotate=!inSystem&&!reduceMotion;camera.position.set(0,0,inSystem?9.2:5.1);controls.target.set(0,0,0);document.querySelector("#view-earth").classList.toggle("active",!inSystem);document.querySelector("#view-system").classList.toggle("active",inSystem);systemCaption.innerHTML=inSystem?"<strong>Наш космічний дім</strong>Вісім планет обертаються навколо Сонця":"<strong>Твій дім — планета Земля</strong>Тут мільярди життів. І кожне має свою історію.";document.querySelector(".scene-chip").innerHTML="<i></i> "+(inSystem?"Сонячна система · схема для дослідження":"Жива планета · досліджуй і відкривай");}
+function setSpaceView(mode){const inSystem=mode==="system";root.visible=!inSystem;solarGroup.visible=!inSystem;systemView.visible=inSystem;controls.autoRotate=!inSystem&&!reduceMotion;camera.position.set(0,0,inSystem?15.2:4.25);controls.target.set(0,0,0);document.querySelector("#view-earth").classList.toggle("active",!inSystem);document.querySelector("#view-system").classList.toggle("active",inSystem);systemCaption.innerHTML=inSystem?"<strong>Наш космічний дім</strong>Вісім планет обертаються навколо Сонця":"<strong>Твій дім — планета Земля</strong>Тут мільярди життів. І кожне має свою історію.";document.querySelector(".scene-chip").innerHTML="<i></i> "+(inSystem?"Сонячна система · схема для дослідження":"Жива планета · досліджуй і відкривай");}
 document.querySelector("#view-earth").addEventListener("click",()=>setSpaceView("earth"));
 document.querySelector("#view-system").addEventListener("click",()=>setSpaceView("system"));
 \nconst moonPivot=new THREE.Group();root.add(moonPivot);const moon=new THREE.Mesh(new THREE.SphereGeometry(.055,24,18),new THREE.MeshStandardMaterial({color:0xc7ced8,roughness:1}));moon.position.set(1.22,.18,0);moonPivot.add(moon);
@@ -242,7 +254,7 @@ document.querySelector("#story-search").addEventListener("input",filter);documen
 document.querySelector("#zoom-in").onclick=()=>camera.position.multiplyScalar(.82);document.querySelector("#zoom-out").onclick=()=>camera.position.multiplyScalar(1.22);document.querySelector("#reset-view").onclick=()=>{camera.position.set(0,0,5.1);controls.target.set(0,0,0);controls.autoRotate=true;};
 function resize(){const w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}new ResizeObserver(resize).observe(canvas);resize();
 const reduceMotion=matchMedia("(prefers-reduced-motion: reduce)").matches;if(reduceMotion)controls.autoRotate=false;
-let last=0;function animate(t){requestAnimationFrame(animate);const dt=Math.min((t-last)/1000,.05);last=t;controls.update();cloudMesh.rotation.y+=dt*.0009;stars.rotation.y+=dt*.000025;moonPivot.rotation.y+=dt*.22;satellitePivot.rotation.y+=dt*.55;satellitePivot.rotation.x=.35;orbitBodies.forEach(o=>o.pivot.rotation.z+=dt*o.speed);saturnGroup.rotation.z+=dt*.07;systemPlanets.forEach(p=>{p.pivot.rotation.z+=dt*p.speed;p.body.rotation.y+=dt*.12;});comets.forEach(c=>{const u=(t/1000*c.speed+c.phase)%1;c.group.position.set(-8+u*16,2.8-Math.sin(u*Math.PI)*4,-5);c.group.rotation.z=-.42;c.group.visible=u>.02&&u<.98;});renderer.render(scene,camera);}requestAnimationFrame(animate);
+let last=0;function animate(t){requestAnimationFrame(animate);const dt=Math.min((t-last)/1000,.05);last=t;controls.update();cloudMesh.rotation.y+=dt*.0009;stars.rotation.y+=dt*.000025;moonPivot.rotation.y+=dt*.22;satellitePivot.rotation.y+=dt*.55;satellitePivot.rotation.x=.35;orbitBodies.forEach(o=>o.pivot.rotation.z+=dt*o.speed);saturnGroup.rotation.z+=dt*.07;systemPlanets.forEach(p=>{p.pivot.rotation.z+=dt*p.speed;p.body.rotation.y+=dt*.12;});asteroidBelt.rotation.z+=dt*.012;comets.forEach(c=>{const u=(t/1000*c.speed+c.phase)%1;c.group.position.set(-8+u*16,2.8-Math.sin(u*Math.PI)*4,-5);c.group.rotation.z=-.42;c.group.visible=u>.02&&u<.98;});renderer.render(scene,camera);}requestAnimationFrame(animate);
 })();
 </script>
 </body></html>
