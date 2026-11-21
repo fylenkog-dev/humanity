@@ -34,6 +34,28 @@ main{position:relative;z-index:1;width:min(1500px,94%);margin:auto}.intro{paddin
 @media(max-width:950px){.stage{grid-template-columns:1fr;min-height:0}.planet-stage{min-height:620px}.side{display:grid;grid-template-columns:1fr 1fr}.story-card{min-height:320px}}
 @media(max-width:620px){header{flex-wrap:wrap;padding:16px 0}nav{order:3;width:100%;justify-content:space-between;gap:12px;font-size:.82rem}.share{font-size:.82rem;padding:9px 13px}.intro{padding-top:20px}.planet-stage{min-height:470px;border-radius:22px}.side{display:flex}.footerline{flex-direction:column}.planet-label{left:14px;bottom:14px}.planet-controls{right:12px;bottom:12px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important}}
+ 
+/* Immersive planetarium direction: cinematic scale, original HUMANITY story UI. */
+.stage{display:block;position:relative;min-height:0;padding:0 0 24px}
+.planet-stage{height:min(82vh,940px);min-height:700px;width:100%;border-radius:26px;border:1px solid #8ebce533;background:radial-gradient(ellipse at 50% 48%,#316aa455 0,#183b6866 34%,#091a35aa 66%,#040916 100%);box-shadow:0 28px 90px #0008,inset 0 0 90px #3c75b522}
+#universe{position:absolute;inset:0;display:none;width:100%;height:100%;touch-action:none}
+.fallback-earth{top:50%;width:min(540px,56vw)}
+.side{position:absolute;z-index:5;right:22px;top:22px;width:min(310px,30%);max-height:calc(100% - 44px);overflow:auto;display:flex;flex-direction:column;gap:12px;scrollbar-width:thin}
+.glass,.journey{background:linear-gradient(145deg,#0a1930d9,#0a1428c9);border:1px solid #b9d9f02b;box-shadow:0 12px 40px #0005;backdrop-filter:blur(18px)}
+.tools h2,.story-card h2,.journey h3{font-family:"Lora",Georgia,serif}
+.scene-chip{top:22px;left:24px;background:#071326bb;border-color:#9bc9ef44;letter-spacing:.04em}
+.planet-label{left:26px;bottom:24px}
+.planet-controls{right:24px;bottom:20px}
+.space{background:radial-gradient(ellipse at 52% 42%,#214c7a 0,#102b50 26%,#09182f 55%,#030712 86%)}
+.nebula{width:92vw;height:92vw;left:4%;top:-12%;background:radial-gradient(ellipse at 28% 42%,#4d8de34d,transparent 34%),radial-gradient(ellipse at 70% 52%,#9b64d133,transparent 38%),radial-gradient(ellipse at 52% 48%,#31a6c526,transparent 68%);filter:blur(48px)}
+.orbit-hud{position:absolute;z-index:4;left:24px;top:76px;display:flex;gap:8px;flex-wrap:wrap;max-width:48%}
+.orbit-hud span{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#c5d9ef;background:#07172bb8;border:1px solid #a8d4ef33;border-radius:999px;padding:7px 11px;backdrop-filter:blur(12px)}
+.orbit-hud span b{color:#9be3d0;font-weight:700;margin-right:5px}
+.object-hud{position:absolute;z-index:4;left:24px;top:126px;color:#dce9f7;text-shadow:0 2px 14px #000;font-size:12px;line-height:1.7;pointer-events:none}
+.object-hud strong{display:block;font:500 22px "Lora",Georgia,serif;color:#fff}
+.story-card{min-height:190px}
+@media(max-width:950px){.stage{display:block}.planet-stage{height:74vh;min-height:570px}.side{position:relative;right:auto;top:auto;width:100%;max-height:none;margin-top:14px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.story-card{grid-column:1/-1}.orbit-hud{max-width:65%}}
+@media(max-width:620px){.planet-stage{height:68vh;min-height:470px;border-radius:20px}.side{display:flex}.orbit-hud{left:12px;top:62px;max-width:calc(100% - 24px)}.orbit-hud span{font-size:9px;padding:6px 8px}.object-hud{left:14px;top:115px}.scene-chip{left:12px;top:12px}.planet-label{left:14px;bottom:14px}.planet-controls{right:12px;bottom:12px}.fallback-earth{width:min(420px,78vw)}}
 </style>
 </head>
 <body>
@@ -43,7 +65,7 @@ main{position:relative;z-index:1;width:min(1500px,94%);margin:auto}.intro{paddin
 <main id="main-content" tabindex="-1">
 <section class="intro"><div class="eyebrow">Ми всі живемо під одним небом</div><h1>Земля велика. А історії роблять нас ближчими.</h1><p>Покрути Землю, обери вогник і почитай чиюсь історію. Можливо, вона нагадає тобі про щось своє.</p></section>
 <section class="stage">
-<div class="planet-stage"><canvas id="universe" aria-hidden="true"></canvas><div class="fallback-earth" id="fallback-earth" role="group" aria-label="Земля, що повільно обертається"><div class="texture-strip"></div><div class="fallback-pin-layer" id="fallback-pin-layer"></div><div class="ocean-glow"></div></div><div class="scene-chip"><i></i> Супутникова Земля · день і ніч</div><div class="planet-label">HUMANITY · EARTH <strong>Ми ближче, ніж здається</strong></div><div class="planet-controls"><button class="glass-btn" id="zoom-out" aria-label="Віддалити">−</button><button class="glass-btn" id="zoom-in" aria-label="Наблизити">＋</button><button class="glass-btn" id="reset-view" aria-label="Початковий вигляд">↺</button></div></div>
+<div class="planet-stage"><canvas id="universe" aria-hidden="true"></canvas><div class="fallback-earth" id="fallback-earth" role="group" aria-label="Земля, що повільно обертається"><div class="texture-strip"></div><div class="fallback-pin-layer" id="fallback-pin-layer"></div><div class="ocean-glow"></div></div><div class="scene-chip"><i></i> Жива планета · досліджуй і відкривай</div><div class="orbit-hud"><span><b>●</b> Земля</span><span>Місяць</span><span>Супутники</span><span>Комети</span><span>Сонячна система</span></div><div class="object-hud"><strong>Твій дім — планета Земля</strong>Тут мільярди життів. І кожне має свою історію.</div><div class="planet-label">HUMANITY · EXPLORER <strong>Світ, що об’єднує нас</strong></div><div class="planet-controls"><button class="glass-btn" id="zoom-out" aria-label="Віддалити">−</button><button class="glass-btn" id="zoom-in" aria-label="Наблизити">＋</button><button class="glass-btn" id="reset-view" aria-label="Початковий вигляд">↺</button></div></div>
 <aside class="side">
 <div class="glass tools"><h2>Знайти щось близьке</h2><input class="search" id="story-search" type="search" placeholder="Країна, тема або назва…" aria-label="Пошук історій"><select class="filter" id="topic-filter" aria-label="Тема історії"><option value="">Усі теми</option><option>Надія</option><option>Спільнота</option><option>Сміливість</option><option>Турбота</option><option>Радість</option></select><p class="hint">Можеш просто покрутити планету або пошукати історію за країною чи темою.</p></div>
 <section class="journey"><div class="eyebrow">Маленька подорож</div><h3>Маршрут людяності</h3><p>П’ять історій із різних куточків світу. П’ять нагадувань, що нас об’єднує більше, ніж здається.</p><button id="journey-next" type="button">Почати подорож →</button></section><div class="glass story-card" id="story-card" aria-live="polite"><div class="empty"><div class="heart">♡</div><h2>Тут хтось хоче поділитися</h2><p>Торкнись вогника на Землі — і відкриється чиясь історія.</p></div></div>
