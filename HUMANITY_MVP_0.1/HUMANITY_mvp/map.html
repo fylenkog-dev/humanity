@@ -63,6 +63,56 @@ main{position:relative;z-index:1;width:min(1500px,94%);margin:auto}.intro{paddin
 .space-tab:focus-visible{outline:2px solid #9be3d0;outline-offset:3px}
 .object-hud{transition:opacity .25s}
 @media(max-width:620px){.space-tab{font-size:10px;padding:7px 10px}}
+
+/* SpaceEngine-inspired HUMANITY explorer: cinematic viewport, restrained instrument UI. */
+html,body{background:#030712}
+.space{background:radial-gradient(ellipse at 48% 48%,#244d7b 0,#102746 28%,#08152b 58%,#02050e 100%)}
+.space:before{opacity:1;background-size:190px 170px;filter:drop-shadow(0 0 2px #9bcfff)}
+.space:after{opacity:.7;background-size:330px 280px}
+.nebula{width:110vw;height:90vw;left:-4%;top:-16%;background:radial-gradient(ellipse at 26% 40%,#4e8bd64d,transparent 30%),radial-gradient(ellipse at 72% 52%,#9565d13b,transparent 34%),radial-gradient(ellipse at 48% 68%,#2a9dbb30,transparent 54%);filter:blur(55px)}
+header{width:min(1680px,96%);padding:14px 0;border-bottom:1px solid #c5dcf018}
+.brand{font-size:.92rem;letter-spacing:.28em}
+nav{gap:22px;font-size:.84rem}
+.share{padding:8px 14px;font-size:.82rem}
+main{width:min(1680px,96%)}
+.intro{padding:16px 0 14px;max-width:850px}
+.intro .eyebrow{font-size:.64rem;letter-spacing:.22em}
+.intro h1{font-size:clamp(1.8rem,3vw,3.05rem);line-height:1.06;margin:5px 0 5px}
+.intro p{font-size:.91rem;color:#b9cce0}
+.stage{display:block;padding:0 0 12px;min-height:0}
+.planet-stage{height:min(83vh,1000px);min-height:690px;border-radius:22px;border:1px solid #9bc9ef30;background:radial-gradient(ellipse at 50% 48%,#316aa455 0,#183b6866 34%,#091a35aa 66%,#040916 100%);box-shadow:0 26px 100px #0009,inset 0 0 110px #4d8ed022}
+.planet-stage:before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;border-radius:inherit;background:linear-gradient(180deg,#030a1880,transparent 17%,transparent 76%,#030a1875),radial-gradient(ellipse at center,transparent 48%,#02061155 100%)}
+#universe{position:absolute;inset:0;z-index:1;display:none;width:100%;height:100%;touch-action:none}
+.fallback-earth{z-index:1}
+.scene-chip,.orbit-hud,.object-hud,.planet-label,.planet-controls{z-index:4}
+.scene-chip{top:20px;left:22px;padding:8px 13px;background:#061326bd;border-color:#a6d8f044;color:#d6e7f8;font-size:.7rem;letter-spacing:.06em}
+.scene-chip i{background:#a5f0d3;box-shadow:0 0 13px #80f4d1}
+.orbit-hud{top:20px;left:50%;transform:translateX(-50%);max-width:55%;justify-content:center;gap:7px}
+.orbit-hud span{font-size:.62rem;letter-spacing:.11em;background:#071326b8;border-color:#a8d4ef29;color:#c4d5e9;padding:7px 11px}
+.space-tab{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:8px 15px;background:#071326d9;border-color:#a8d4ef40}
+.space-tab.active{background:#a1dfd126;border-color:#a1dfd1a0;box-shadow:inset 0 0 18px #a1dfd11c}
+.object-hud{top:auto;left:24px;bottom:88px;padding:12px 15px;border-left:2px solid #9bd8c0;background:linear-gradient(90deg,#071326bd,transparent);max-width:310px;color:#c1d1e2;font-size:.76rem;line-height:1.6}
+.object-hud strong{font-size:1.42rem;letter-spacing:-.02em;margin-bottom:3px}
+.planet-label{left:24px;bottom:22px;font-size:.63rem;letter-spacing:.18em;color:#9cb0c8}
+.planet-label strong{font-size:.77rem;color:#e8f3ff;letter-spacing:.08em}
+.planet-controls{right:22px;bottom:20px;gap:7px}
+.glass-btn{width:39px;height:39px;border-color:#a8cce044;background:#071326c9;color:#e4f2ff;box-shadow:0 5px 22px #0005}
+.glass-btn:hover{border-color:#a1dfd1;background:#183656}
+.side{position:absolute;z-index:6;right:20px;top:20px;width:290px;max-height:calc(min(83vh,1000px) - 40px);overflow:auto;gap:10px;scrollbar-width:thin;scrollbar-color:#7193b655 transparent}
+.glass{background:linear-gradient(145deg,#0a1a30d9,#071225d9);border-color:#b9d9f033;box-shadow:0 18px 55px #0006;backdrop-filter:blur(22px)}
+.tools{padding:15px}
+.tools h2{font-size:1.22rem}
+.journey{padding:14px 16px;background:linear-gradient(145deg,#102b43df,#0a1b31df);border-color:#9bd8c044;backdrop-filter:blur(22px)}
+.journey h3{font-size:1.16rem}
+.story-card{padding:18px;min-height:250px}
+.story-card h2{font-size:1.48rem}
+.story-copy{font-size:.95rem;line-height:1.75}
+.story-index{margin:0 0 14px;color:#aebfd2;font-size:.82rem}
+.story-index summary{cursor:pointer}
+.footerline{font-size:.68rem;color:#829bb8}
+@media(max-width:950px){.intro{padding:13px 0}.planet-stage{height:75vh;min-height:570px}.side{position:relative;top:auto;right:auto;width:100%;max-height:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:12px}.story-card{grid-column:1/-1}.orbit-hud{left:50%;top:16px;max-width:68%}.object-hud{bottom:76px}}
+@media(max-width:620px){header{width:92%;flex-wrap:wrap;gap:12px;padding:12px 0}nav{order:3;width:100%;justify-content:space-between;gap:10px;font-size:.78rem}main{width:92%}.intro h1{font-size:2rem}.planet-stage{height:70vh;min-height:490px;border-radius:18px}.scene-chip{top:12px;left:12px;font-size:.62rem}.orbit-hud{top:56px;max-width:calc(100% - 24px);width:calc(100% - 24px);left:12px;transform:none;justify-content:flex-start}.orbit-hud span{display:none}.space-tab{padding:7px 10px;font-size:.61rem}.object-hud{left:12px;bottom:70px;max-width:230px;padding:8px 10px;font-size:.67rem}.object-hud strong{font-size:1.1rem}.planet-label{left:13px;bottom:15px}.planet-controls{right:12px;bottom:12px}.glass-btn{width:35px;height:35px}.side{display:flex}.footerline{flex-direction:column;gap:5px}}
+@media(prefers-reduced-motion:reduce){.nebula,.space:before,.space:after,.fallback-earth,.fallback-earth .texture-strip{animation:none!important}}
 </style>
 </head>
 <body>
